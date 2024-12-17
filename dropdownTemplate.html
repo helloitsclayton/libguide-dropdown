@@ -1,28 +1,33 @@
 <!-- SIDE NAV -->
+<style>
+	@media all and (max-width: 992px) {
+		#s-lg-guide-tabs,
+		.nav > li > a.s-lg-tab-drop{
+			display: none;
+		}
+
+		.s-lg-subtab-ul{
+			margin-left: 1rem;
+		}
+	}
+
+	@media all and (min-width: 992px) {
+		#s-lg-guide-tabs-drop{
+			display: none;
+		}
+	}
+
+	#s-lg-guide-tabs-drop,
+	#s-lg-search-admin{
+		margin-top: 15px;
+	}
+
+	#dropdownLabel,
+	#dropdownGuideNav{
+		width: 100%;
+	}
+</style>
 <body class="s-lg-guide-body">
-	<style>
-		@media all and (max-width: 992px) {
-			#s-lg-guide-tabs{
-				display: none;
-			}
-		}
-
-		@media all and (min-width: 992px) {
-			#s-lg-guide-tabs-drop{
-				display: none;
-			}
-		}
-
-		#s-lg-guide-tabs-drop,
-		#s-lg-search-admin{
-			margin-top: 15px;
-		}
-
-		#dropdownLabel,
-		#dropdownGuideNav{
-			width: 100%;
-		}
-	</style>
 	{{skip_link}}
 	{{obsolete_browser_alert}}
 	{{ADMIN_CMD_BAR}}
@@ -31,35 +36,32 @@
 	<!-- END: Page Header -->
 	<!-- BEGIN: Guide Header -->
 	<div id="s-lg-guide-header" class="container s-lib-header s-lib-side-borders">
-		<div class="row">
-			<div id="s-lg-guide-tabs-drop" class="dropdown col-sm-12" role="navigation" aria-label="Guide Pages">
-				<button id="dropdownLabel" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					Guide Navigation&nbsp;<span class="caret"></span>
-				</button>
-				<ul id="dropdownGuideNav" class="nav nav-pills nav-stacked dropdown-menu" aria-labelledby="dropdownLabel">
-					{{guide_nav}}
-				</ul>
+		<nav id="s-lib-bc" aria-label="breadcrumb">
+			{{breadcrumbs}}
+		</nav>
+		<div class="pull-right">
+			<div id="s-lg-guide-header-search">
+				{{guide_search}}
 			</div>
-			<div id="s-lg-guide-info" class="col-md-12">
-				<nav id="s-lib-bc" aria-label="breadcrumb">
-					{{breadcrumbs}}
-				</nav>
-				<div class="pull-right">
-					<div id="s-lg-guide-header-search">
-						{{guide_search}}
-					</div>
-					{{ADMIN_MINI_CMD_BAR}}
-				</div>
-				<div id="s-lg-guide-header-info">
-					<h1 id="s-lg-guide-name">{{guide_title}}</h1>
-					<div id="s-lg-guide-desc-container">
-						<span id="s-lg-guide-description">{{guide_description}}</span>
-					</div>
-				</div>
+			{{ADMIN_MINI_CMD_BAR}}
+		</div>
+		<div id="s-lg-guide-tabs-drop" class="dropdown" role="navigation" aria-label="Guide Pages">
+			<button id="dropdownLabel" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				Guide Navigation&nbsp;<span class="caret"></span>
+			</button>
+			<ul id="dropdownGuideNav" class="nav nav-pills nav-stacked dropdown-menu" aria-labelledby="dropdownLabel">
+				{{guide_nav}}
+			</ul>
+		</div>
+		<div id="s-lg-guide-header-info">
+			<h1 id="s-lg-guide-name">{{guide_title}}</h1>
+			<div id="s-lg-guide-desc-container">
+				<span id="s-lg-guide-description">{{guide_description}}</span>
 			</div>
 		</div>
 	</div>
 	<!-- END: Guide Header -->
+	<!-- BEGIN: Guide Content -->
 	<div id="s-lg-guide-tabs-title-bar" class="container s-lib-side-borders"></div>
 	<div id="s-lg-side-nav-content" class="container s-lib-side-borders pad-top-med">
 		<div class="row">
@@ -69,8 +71,8 @@
 						<ul class="nav nav-pills nav-stacked split-button-nav">
 							{{guide_nav}}
 						</ul>
+						{{side_nav_boxes}}
 					</div>
-					{{side_nav_boxes}}
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -101,17 +103,25 @@
 			</div>
 		</div>
 	</div>
+	<!-- END: Guide Content -->
 	<!-- BEGIN: Page Footer -->
 	<div id="s-lib-footer-public" class="s-lib-footer footer container s-lib-side-borders">
 		<div id="s-lg-guide-header-meta" class="pad-top-sm pad-left-med clearfix">
-			<ul id="s-lg-guide-header-attributes" class="">
-				<li id="s-lg-guide-header-url">{{guide_url_display}}</li>
+			<ul id="s-lg-guide-header-attributes">
+				<li id="s-lg-guide-header-updated" class="s-lg-h-separator">
+					{{last_updated_display}}
+				</li>
+				<li id="s-lg-guide-header-url">
+					{{guide_url_display}}
+				</li>
 			</ul>
-			<div id="s-lib-footer-login-link" class="pull-right pad-right-med">{{login_url_display}}</div>
+			<div id="s-lib-footer-login-link" class="pull-right pad-right-med">
+				{{login_url_display}}
+			</div>
 		</div>
 		<div class="pad-bottom-sm clearfix">
 			<div id="s-lib-footer-support-link" class="pull-right pad-right-med">
-				<a href="<!-- Ref link -->">Report a problem</a>
+				<a href="<!-- Reporting link -->">Report a problem</a>
 			</div>
 			<div id="s-lg-guide-header-subjects" class="pad-top-sm pad-left-med pad-right-med pull-left">
 				{{guide_subjects}}
@@ -134,6 +144,6 @@
 	<!-- !scroll_top.twig -->
 	<div id="s-lib-alert" title=""><div id="s-lib-alert-content"></div></div>
 	<!-- BEGIN: Custom Footer -->
-		{{public_footer}}
+	{{public_footer}}
 	<!-- END: Custom Footer -->
 </body>
